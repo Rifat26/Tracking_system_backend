@@ -10,7 +10,7 @@ app.use(express.json())
 app.use(
   cors({
     origin: [
-      'https://location-track-frontend.vercel.app',
+      'https://tracking-system-frontend-rude.vercel.app',
       'http://localhost:5173',
     ], // Allow only your frontend
     credentials: true, // If you need cookies or authentication
