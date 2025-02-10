@@ -17,24 +17,31 @@ const http_status_1 = __importDefault(require("http-status"));
 const CatchAsync_1 = __importDefault(require("../../utils/CatchAsync"));
 const SendResponce_1 = __importDefault(require("../../utils/SendResponce"));
 const authService_1 = require("./authService");
-const config_1 = __importDefault(require("../../config"));
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const loginController = (0, CatchAsync_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield authService_1.authService.loginService(req.body);
-    const { accessToken, refreshToken } = result;
-    res.cookie("refreshToken", refreshToken, {
-        secure: config_1.default.node__env === 'production',
-        httpOnly: true,
-    });
+    yield authService_1.authService.loginService(req.body);
     (0, SendResponce_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        "message": "Login successful",
+        message: 'A verification code has been sent to your email address.',
+        data: null,
+    });
+}));
+const verifyCodeController = (0, CatchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { email, code } = req.body;
+    const result = yield authService_1.authService.verifyCodeService(email, code);
+    const { accessToken, refreshToken } = result;
+    (0, SendResponce_1.default)(res, {
+        statusCode: http_status_1.default.OK,
+        success: true,
+        message: 'Login successful.',
         data: {
-            token: accessToken
-        }
+            accessToken,
+            refreshToken,
+        },
     });
 }));
 exports.AuthController = {
-    loginController
+    loginController,
+    verifyCodeController,
 };

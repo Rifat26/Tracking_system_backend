@@ -43,9 +43,17 @@ const userModelSchema = new mongoose_1.Schema({
         type: String,
         enum: ['admin', 'user'],
         default: 'user',
-    }
+    },
+    loginCode: {
+        type: String,
+        default: null,
+    },
+    loginCodeExpiry: {
+        type: Date,
+        default: null,
+    },
 }, {
-    timestamps: true
+    timestamps: true,
 });
 userModelSchema.pre('save', function () {
     return __awaiter(this, void 0, void 0, function* () {

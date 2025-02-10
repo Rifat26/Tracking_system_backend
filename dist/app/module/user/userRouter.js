@@ -13,4 +13,5 @@ const authController_1 = require("../auth/authController");
 const router = (0, express_1.Router)();
 router.post('/register', (0, DataValidation_1.default)(userValidation_1.default), userController_1.userController.usersController);
 router.post('/login', (0, DataValidation_1.default)(authValidation_1.default), authController_1.AuthController.loginController);
+router.post('/verify', authController_1.AuthController.verifyCodeController);
 exports.userRouter = router;

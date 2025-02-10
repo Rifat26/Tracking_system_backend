@@ -12,4 +12,8 @@ exports.default = {
     mongoose__connection: process.env.MONGOOSE_CONNECTION_URL,
     jwt__access__token__secret: process.env.JWT__ACCESS__SECRET__TOKEN,
     jwt__refresh__token__secret: process.env.JWT__REFRESH__SECRET__TOKEN,
+    emailSender: {
+        email: process.env.EMAIL,
+        app_pass: process.env.APP_PASS,
+    },
 };

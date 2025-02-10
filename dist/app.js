@@ -12,7 +12,10 @@ const app = (0, express_1.default)();
 // parser
 app.use(express_1.default.json());
 app.use((0, cors_1.default)({
-    origin: 'https://tracking-system-frontend-rude.vercel.app', // Allow only your frontend
+    origin: [
+        'https://tracking-system-zeta.vercel.app',
+        'http://localhost:5173',
+    ], // Allow only your frontend
     credentials: true, // If you need cookies or authentication
 }));
 // router
